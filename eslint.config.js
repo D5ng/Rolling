@@ -12,6 +12,7 @@ import standard from "eslint-config-standard"
 import pluginJs from "@eslint/js"
 import pluginN from "eslint-plugin-n"
 import pluginPromise from "eslint-plugin-promise"
+import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript"
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -28,6 +29,11 @@ export default tseslint.config(
     settings: {
       react: {
         version: "detect"
+      },
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.app.json"
+        }
       }
     },
     files: ["**/*.{ts,tsx}"],
