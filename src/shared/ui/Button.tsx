@@ -5,7 +5,7 @@ import { cn } from "@shared/utils/cn"
 import Slottable from "@shared/lib/utils/Slottable"
 
 const ButtonVariants = cva(
-  "min-w-[122px] flex justify-between items-center rounded-md h-[40px] md:w-full xl:w-[280px] disabled:text-white disabled:bg-gray-300 disabled:border-gray-300 disabled:cursor-not-allowed",
+  "min-w-[122px] flex justify-center items-center rounded-md h-[40px] text-center md:w-full xl:w-[280px] disabled:text-white disabled:bg-gray-300 disabled:border-gray-300 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
@@ -29,7 +29,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<ty
 export default function Button({ asChild, variant, className, children, ...restProps }: Props) {
   const Element = asChild ? Slot : "button"
   return (
-    <Element className={cn(ButtonVariants({ variant, className }))} {...restProps}>
+    <Element className={cn(ButtonVariants({ variant }), className)} {...restProps}>
       <Slottable>{children}</Slottable>
     </Element>
   )
