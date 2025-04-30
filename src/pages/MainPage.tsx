@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import Button from "@shared/ui/Button"
+import Badge from "@shared/ui/Badge"
 
 export default function MainPage() {
   return (
     <>
       <section className="bg-surface p-6 flex flex-col gap-[50px] rounded-[20px] mt-[42px] md:mt-[49px] xl:mt-[60px] md:p-10 xl:flex-row xl:justify-between xl:p-16 xl:max-w-[1200px] xl:mx-auto">
         <div>
-          <span className="bg-purple-600 rounded-full text-sm px-3 py-1 font-bold text-white">Point. 01</span>
+          <Badge variant="primary">Point. 01</Badge>
           <h2 className="text-lg font-bold pt-4 pb-1 md:text-2xl md:pb-2">
             누구나 손쉽게, 온라인 <br className="hidden xl:block" />
             롤링 페이퍼를 만들 수 있어요
@@ -20,7 +21,7 @@ export default function MainPage() {
       </section>
       <section className="mt-6 bg-surface p-6 flex flex-col gap-[50px] rounded-[20px] md:p-10 md:mt-8 xl:flex-row xl:justify-between xl:p-16 xl:max-w-[1200px] xl:mx-auto">
         <div>
-          <span className="bg-purple-600 rounded-full text-sm px-3 py-1 font-bold text-white">Point. 02</span>
+          <Badge variant="primary">Point. 02</Badge>
           <h2 className="text-lg font-bold pt-4 pb-1 md:text-2xl md:pb-2">
             서로에게 이모지로 감정을 <br className="hidden xl:block" /> 표현해보세요
           </h2>
