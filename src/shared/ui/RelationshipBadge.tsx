@@ -1,9 +1,10 @@
 import { cva } from "class-variance-authority"
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes } from "react"
 import { cn } from "@shared/utils/cn"
 import Badge from "./Badge"
 
-type RelationshipList = ["지인", "동료", "가족", "친구"]
+export const RELATIONSHIP_LIST = ["지인", "동료", "가족", "친구"] as const
+export type RelationshipList = (typeof RELATIONSHIP_LIST)[number]
 
 const BadgeVariants = cva("px-2 h-5 inline-flex justify-center items-center rounded-[4px] text-sm", {
   variants: {
@@ -17,14 +18,21 @@ const BadgeVariants = cva("px-2 h-5 inline-flex justify-center items-center roun
 })
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
-  relationship: RelationshipList[number]
-  children: ReactNode
+  relationship: RelationshipList
 }
 
-export default function RelationshipBadge({ relationship, children, className, ...restProps }: Props) {
+export default function RelationshipBadge({ relationship, className, ...restProps }: Props) {
+  if (!isValidRelationship(relationship)) {
+    throw new Error(`${relationship}은 유효한 값이 아닙니다`)
+  }
+
   return (
     <Badge className={cn(BadgeVariants({ className, variant: relationship }))} {...restProps}>
-      {children}
+      {relationship}
     </Badge>
   )
+}
+
+function isValidRelationship(relationship: RelationshipList) {
+  return RELATIONSHIP_LIST.includes(relationship)
 }
