@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import MainPage from "@pages/MainPage"
-import DefaultLayout from "@pages/DefaultLayout"
+import DefaultLayout from "@shared/layout/DefaultLayout"
+import MainPage from "@pages/main"
 
 export default function Router() {
   const router = createBrowserRouter([
