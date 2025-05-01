@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import Header from "src/widgets/common/Header"
+import Header from "@shared/ui/Header"
 
 export default function DefaultLayout() {
   return (
