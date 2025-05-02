@@ -25,8 +25,17 @@ jobs:
         with:
           node-version: 20
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright
+
       - name: Install dependencies
         run: yarn install
+
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
 
       - name: Type Check
         run: yarn tsc --noEmit
