@@ -16,7 +16,6 @@ export default function Slot({ children, ...restProps }: SlotProps) {
   if (slottable) {
     const newElement = slottable.props.children
     const newChildren = childrenArray.map((child) => {
-      console.log(child)
       if (child !== slottable) {
         return child
       }
@@ -33,8 +32,6 @@ export default function Slot({ children, ...restProps }: SlotProps) {
 
       return null
     })
-
-    console.log(newElement, newChildren)
 
     return isValidElement(newElement) ? cloneElement(newElement, { ...restProps }, newChildren) : null
   }
