@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority"
-import { createContext, ImgHTMLAttributes, ReactNode, useContext, useState } from "react"
+import { createContext, HTMLAttributes, ImgHTMLAttributes, useContext, useState } from "react"
 import { cn } from "@shared/utils/cn"
 
 /*****************************************************
@@ -40,12 +40,12 @@ interface Props extends VariantProps<typeof AvatarVariants>, ImgHTMLAttributes<H
 /*****************************************************
  *                Avatar Root Component
  *****************************************************/
-function Avatar({ children, size }: Props) {
+function Avatar({ children, size, className }: Props) {
   const { imageStatus, onImageStatus } = useImageStatus()
 
   return (
     <AvatarContext.Provider value={{ imageStatus, onImageStatus }}>
-      <div className={cn(AvatarVariants({ size }))}>{children}</div>
+      <div className={cn(AvatarVariants({ size }), className)}>{children}</div>
     </AvatarContext.Provider>
   )
 }
@@ -58,7 +58,7 @@ interface AvatarImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   alt: string
 }
 
-function AvatarImage({ src, alt, ...restProps }: AvatarImageProps) {
+function AvatarImage({ src, alt, className, ...restProps }: AvatarImageProps) {
   const { imageStatus, onImageStatus } = useAvatarContext()
 
   if (imageStatus === "error") {
@@ -69,6 +69,7 @@ function AvatarImage({ src, alt, ...restProps }: AvatarImageProps) {
     <img
       src={src}
       alt={alt}
+      className={cn("object-cover object-center", className)}
       {...restProps}
       onLoad={() => onImageStatus("loaded")}
       onError={() => onImageStatus("error")}
@@ -79,7 +80,7 @@ function AvatarImage({ src, alt, ...restProps }: AvatarImageProps) {
 /*****************************************************
  *                  Avatar Fallback
  *****************************************************/
-function AvatarFallback({ children }: { children: ReactNode }) {
+function AvatarFallback({ children, className }: HTMLAttributes<HTMLSpanElement>) {
   const { imageStatus } = useAvatarContext()
 
   if (imageStatus === "loaded") {
@@ -87,7 +88,9 @@ function AvatarFallback({ children }: { children: ReactNode }) {
   }
 
   return (
-    <span className="w-full h-full text-xs flex justify-center items-center bg-gray-400 text-white">{children}</span>
+    <span className={cn("w-full h-full text-xs flex justify-center items-center bg-gray-400 text-white", className)}>
+      {children}
+    </span>
   )
 }
 
