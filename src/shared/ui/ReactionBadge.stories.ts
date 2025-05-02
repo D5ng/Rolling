@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react"
 import ReactionBadge from "./ReactionBadge"
 
 const meta = {
-  title: "ReactionBadage",
+  title: "shared/ui/badge/ReactionBadage",
   component: ReactionBadge
 } satisfies Meta<typeof ReactionBadge>
 
